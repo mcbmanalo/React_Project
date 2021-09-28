@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #0d0e0e;
+  height: 100vh;
 }
 
 .App-logo {
@@ -15,17 +17,78 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
+.App-header > * {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.App-pages {
   color: #61dafb;
+  display: flex;
+}
+
+.App-pages > * {
+  margin-right: 2vw;
+}
+
+.App-image {
+  color: #61dafb;
+}
+
+.App-generator {
+  color: #61dafb;
+  background-color: #222323;
+  border-radius: 1vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+  min-height: 14vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+  justify-content: center;
+}
+
+.App-genres {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  border-radius: 1vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  background-color: #222323;
+  color: #61dafb;
+}
+
+.App-genres > * {
+  margin-top: 3vh;
+}
+
+.Genres {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.Genres > * {
+  margin: 20px;
+  border-radius: 1vh;
+  padding: 10px;
+  color: #61dafb;
+  background-color: #282c34;
 }
 
 @keyframes App-logo-spin {
