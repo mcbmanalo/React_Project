@@ -58,7 +58,7 @@
 }
 
 .App-generator {
-  color: #61dafb;
+  color: #fff;
   background-color: #181818;
   border-radius: 1vw;
   margin-left: 10vw;
@@ -80,7 +80,7 @@
   margin-left: 5vw;
   margin-right: 5vw;
   background-color: #181818;
-  color: #61dafb;
+  color: #fff;
   padding-top: 5vh;
   padding-bottom: 5vh;
 }

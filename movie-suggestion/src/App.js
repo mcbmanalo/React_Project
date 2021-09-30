@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  withRouter
+  useHistory
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
@@ -50,11 +50,12 @@ const testGenre = (list1, list2) => {
   console.log(newList)
 }
 
-function App() {
+const App = props => {
   const [selectedGenres, setSelectedGenres] = useState([])
   const [genres, setListofGenres] = useState([])
   const [movieList, setMovieList] = useState([])
   const [tvList, settvList] = useState([])
+  const history = useHistory();
 
   const addSelectedGenres = (genre) => {
     if (selectedGenres.includes(genre)) return
@@ -91,6 +92,8 @@ function App() {
 
   const generateMovieTV = () => {
     console.log('Add code for choosing random movie')
+    console.log(history)
+    history.push('/suggest')
   }
 
   useEffect(() => {
@@ -100,7 +103,6 @@ function App() {
   }, [])
   return (
     <UserProvider generateMovieTV={generateMovieTV} addSelectedGenre={addSelectedGenres} genres={genres}>
-      <Router>
         <div className='App'>
           <Switch>
             <Route path="/" component={Home} exact/>
@@ -117,7 +119,6 @@ function App() {
             <img className='TMDB-logo' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'/>
           </div>
         </div>
-      </Router>
     </UserProvider>
   );
 }

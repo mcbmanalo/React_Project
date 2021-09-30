@@ -10,7 +10,7 @@ const Generator = (props) => {
       <div>
         Surprise yourself!
       </div>
-      <Link className='link' to='/suggest' onClick={(event) => user.generateMovieTV()}>Generate</Link>
+      <div onClick={user.generateMovieTV}>Generate</div>
     </div>
   )
 }
