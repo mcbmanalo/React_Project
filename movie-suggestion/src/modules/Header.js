@@ -1,3 +1,7 @@
+import { 
+  Link,
+} from 'react-router-dom';
+
 
 const Header = () => {
   return (
@@ -7,10 +11,11 @@ const Header = () => {
       </div>
 
       <div className='App-pages'>
-        <p>Home</p>
-        <p>Movies</p>
-        <p>TV Series</p>
+        <Link to='/'>Home</Link>
+        <Link to='/movies'>Movies</Link>
+        <Link to='/tv-series'>TV Series</Link>
       </div>
+
     </div>
   )
 }

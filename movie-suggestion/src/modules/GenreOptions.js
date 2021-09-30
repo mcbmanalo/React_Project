@@ -1,10 +1,13 @@
+import React, {useContext} from 'react';
+import { UserContext } from '../App'
 
-const GenreOptions = (props) => {
-  let {genres, addSeletectedGenre} = props;
+const GenreOptions = () => {
 
-  const generateGenres = genres.map((genre, index) => {
-    const key = `${genre}-${index}`
-    return <div onClick={(event) => addSeletectedGenre(event.target.textContent)} key={key}>{genre}</div>
+  const user = useContext(UserContext);
+
+  const generateGenres = user.genres.map((genre) => {
+    const key = `${genre.name}-${genre.id}`
+    return <div onClick={(event) => user.addSelectedGenre(event.target.textContent)} key={key}>{genre.name}</div>
   })
 
   return (
