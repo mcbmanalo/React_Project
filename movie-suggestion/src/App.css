@@ -11,6 +11,22 @@
   }
 }
 
+.TMDB-logo {
+  width: 6vw;
+  height: 10vh;
+  margin-left: 1vw;
+}
+
+.TMDb {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  margin-top: 10vh;
+  margin-right: 2vw;
+  justify-content: end;
+  align-items: center;
+}
+
 .App-header {
   background-color: #181818;
   min-height: 10vh;

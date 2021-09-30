@@ -98,6 +98,12 @@ function App() {
               <Route path="/tv-series" component={TVSeries}/>
             </MovieProvider>
           </Switch>
+          <div className='TMDb'>
+            <div>
+              This product uses the TMDB API but is not endorsed or certified by TMDB
+            </div>
+            <img className='TMDB-logo' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'/>
+          </div>
         </div>
       </Router>
     </UserProvider>
