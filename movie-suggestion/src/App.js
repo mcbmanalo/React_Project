@@ -4,10 +4,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  withRouter
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import TVSeries from './pages/TVSeries';
+import Random from './pages/Random';
 
 export const UserContext = React.createContext();
 export const MovieContext = React.createContext();
@@ -39,6 +41,15 @@ const getUniqueList = (list, key) => {
   return [...new Map(list.map(item => [item[key], item])).values()]
 }
 
+const testGenre = (list1, list2) => {
+  let newList = [...list1]
+  list2.map((item) => {
+    newList.push(list1.find(list1Item => list1Item.id === item.id))
+  })
+  console.log('Test Log')
+  console.log(newList)
+}
+
 function App() {
   const [selectedGenres, setSelectedGenres] = useState([])
   const [genres, setListofGenres] = useState([])
@@ -62,13 +73,13 @@ function App() {
     const jsonMovie = await movieResponse.json()
     const jsonTV = await tvResponse.json()
     const listOfGenres = [...jsonMovie.genres, ...jsonTV.genres]
+    testGenre(jsonMovie.genres, jsonTV.genres)
     setListofGenres(getUniqueList(listOfGenres, 'id'))
   }
 
   const getMovieList = async() => {
     const movieListResponse = await fetch(discoverMovie)
     const jsonMovieList = await movieListResponse.json()
-    console.log(jsonMovieList.results)
     setMovieList(jsonMovieList) 
   }
   
@@ -96,6 +107,7 @@ function App() {
             <MovieProvider movieList={movieList} tvList={tvList}>
               <Route path="/movies" component={Movies}/>
               <Route path="/tv-series" component={TVSeries}/>
+              <Route path="/suggest" component={Random} />
             </MovieProvider>
           </Switch>
           <div className='TMDb'>
