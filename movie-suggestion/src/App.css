@@ -37,12 +37,6 @@
   color: #ff0000;
 }
 
-.image {
-  width: 30vw;
-  height: 50vh;
-}
-
-
 .App-generator {
   color: #61dafb;
   background-color: #181818;
@@ -91,6 +85,32 @@
   color: #fff;
   background-color: #373737;
 }
+
+.movie {
+  display: grid;
+  grid-template-areas: 'image image movieContent movieContent movieContent';
+  padding: 6vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  color:#fff;
+  text-align: left;
+}
+
+.movieContent {
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+}
+
+.movieContent > * {
+  margin-bottom: 1vh;
+}
+
+.image {
+  height: 50vh;
+  margin-right: 5vw;
+}
+
 
 @keyframes App-logo-spin {
   from {

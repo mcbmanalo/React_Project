@@ -49,7 +49,7 @@ function App() {
     if (selectedGenres.includes(genre)) return
     let chosenGenre = [...selectedGenres]
     genres.map((genreItem) => {
-      if (genreItem.name === genre) return chosenGenre.push(genreItem)
+      if (genreItem.name === genre) chosenGenre.push(genreItem)
     })
     console.log(chosenGenre)
     // let newSelectedGenres = [...selectedGenres]
