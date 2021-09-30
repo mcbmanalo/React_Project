@@ -14,8 +14,8 @@ export const MovieContext = React.createContext();
 // const key = process.env.REACT_APP_API_KEY
 const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
-const discoverMovie = process.env.REACT_APP_MOVIE_LIST
-const discoverTV = process.env.REACT_APP_TV_LIST
+const discoverMovie = process.env.REACT_APP_MOVIE_LIST // try moving the fetching data of movies to movie page later
+const discoverTV = process.env.REACT_APP_TV_LIST // try moving the fetching data of movies to tv series page later
 
 const UserProvider = (props) => {
   const {children, generateMovieTV, addSelectedGenre, genres} = props
@@ -49,12 +49,10 @@ function App() {
     if (selectedGenres.includes(genre)) return
     let chosenGenre = [...selectedGenres]
     genres.map((genreItem) => {
-      if (genreItem.name === genre) chosenGenre.push(genreItem)
+      if (genreItem.name === genre) return chosenGenre.push(genreItem)
+      return null
     })
     console.log(chosenGenre)
-    // let newSelectedGenres = [...selectedGenres]
-    // newSelectedGenres.push(genre)
-    // console.log(newSelectedGenres)
     setSelectedGenres(chosenGenre)
   }
 

@@ -1,17 +1,15 @@
 import Header from "../modules/Header";
-import React, {useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { MovieContext, UserContext } from "../App";
 
 const imagepath = process.env.REACT_APP_POSTER_PATH
 
 const Movies = () => {
+  const [currentPage, setCurrentPage] = useState(0) // this will be used for pagination later
   const movies = useContext(MovieContext);
   const user = useContext(UserContext);
   const {genres} = user;
   const {movieList} = movies
-
-  useEffect(() => {
-  }, [])
 
   const getGenres = (genreIDs) => {
     let movieGenre = []
@@ -34,6 +32,11 @@ const Movies = () => {
       </div>
     )
   })
+
+  useEffect(() => {
+    console.log(movieList.page)
+    setCurrentPage(movieList.page)
+  }, [])
 
   return (
     <div>
