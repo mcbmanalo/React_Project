@@ -1,12 +1,8 @@
 .App {
   text-align: center;
   background-color: #212121;
-  height: 100vh;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: auto;
+  padding-bottom: 10vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -23,11 +19,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
-}
-
-.App-header > * {
-  margin-left: 5vw;
-  margin-right: 5vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .App-pages {
@@ -37,11 +30,18 @@
 
 .App-pages > * {
   margin-right: 2vw;
+  color: #ff0000;
 }
 
 .App-image {
   color: #ff0000;
 }
+
+.image {
+  width: 30vw;
+  height: 50vh;
+}
+
 
 .App-generator {
   color: #61dafb;
@@ -67,6 +67,8 @@
   margin-right: 5vw;
   background-color: #181818;
   color: #61dafb;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .App-genres > * {
