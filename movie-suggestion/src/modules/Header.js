@@ -11,9 +11,9 @@ const Header = () => {
       </div>
 
       <div className='App-pages'>
-        <Link to='/'>Home</Link>
-        <Link to='/movies'>Movies</Link>
-        <Link to='/tv-series'>TV Series</Link>
+        <Link className='link' to='/'>Home</Link>
+        <Link className='link' to='/movies'>Movies</Link>
+        <Link className='link' to='/tv-series'>TV Series</Link>
       </div>
 
     </div>

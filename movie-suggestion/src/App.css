@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #212121;
-  height: auto;
+  min-height: 100vh;
   padding-bottom: 10vh;
 }
 
@@ -25,6 +25,10 @@
   margin-right: 2vw;
   justify-content: end;
   align-items: center;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .App-header {
