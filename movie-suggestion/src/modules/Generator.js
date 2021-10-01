@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import { Link } from 'react-router-dom';
 import { UserContext } from '../App'
 
 const Generator = (props) => {
@@ -7,10 +6,9 @@ const Generator = (props) => {
 
   return (
     <div className='App-generator'>
-      <div>
+      <div className='quotes' onClick={user.generateMovieTV}>
         Surprise yourself!
       </div>
-      <div onClick={user.generateMovieTV}>Generate</div>
     </div>
   )
 }

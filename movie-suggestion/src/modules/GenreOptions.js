@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import { UserContext } from '../App'
 
 const GenreOptions = () => {
@@ -35,7 +35,7 @@ const GenreOptions = () => {
         </div>
       </div>
 
-      <div>Choose a genre that you would like to base the generator</div>
+      <div className='quotes'>Choose a genre that you would like to base the generator</div>
       { user.isMovie ? 
         <div className='Genres'>{generateMovieGenres}</div> : 
         <div className='Genres'>{generateTVGenres}</div>

@@ -70,7 +70,6 @@ const App = props => {
         if (genreItem.name === genre) return chosenGenre.push(genreItem)
         return null
       })
-      console.log(chosenGenre)
       setSelectedGenres(chosenGenre)
       return
     }
@@ -79,8 +78,6 @@ const App = props => {
       if (genreItem.name === genre) return chosenGenre.push(genreItem)
       return null
     })
-
-    console.log(chosenGenre)
     setSelectedGenres(chosenGenre)
   }
 
@@ -118,7 +115,6 @@ const App = props => {
   const makeDiscoverLink = async(type, includedGenres) => {
     let linkGenres = includedGenres.join('%2C')
     let discoverLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=${includedGenres}`
-    console.log(discoverLink)
     const discoverResponse = await fetch(discoverLink)
     const discoverJson = await discoverResponse.json()
     let max = discoverJson.total_pages + 1
@@ -128,7 +124,6 @@ const App = props => {
     const finalResponse = await fetch(finalLink)
     const finalJson = await finalResponse.json()
     let movie = finalJson.results[Math.floor(Math.random() * finalJson.results.length)]
-    console.log(movie)
     setLoading(false)
     setSuggestedMovie(movie)
   }

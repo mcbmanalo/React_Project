@@ -34,7 +34,6 @@ const Movies = () => {
   })
 
   useEffect(() => {
-    console.log(movieList)
     setCurrentPage(movieList.page)
   }, [])
 

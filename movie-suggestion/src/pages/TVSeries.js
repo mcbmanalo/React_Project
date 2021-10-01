@@ -20,7 +20,6 @@ const TVSeries = () => {
   }
 
   const generateTVSeries = tvList.results.map((series) => {
-    console.log(tvList)
     return (
       <div key={series.id} className='movie'>
         <img className='image' src={imagepath + series.poster_path}/>
@@ -35,7 +34,6 @@ const TVSeries = () => {
   })
 
   useEffect(() => {
-    console.log(tvList.page)
     setCurrentPage(tvList.page)
   }, [])
 

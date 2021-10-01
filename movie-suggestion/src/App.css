@@ -91,6 +91,10 @@
   margin-top: 3vh;
 }
 
+.quotes {
+  font-size: calc(5px + 2vmin);
+}
+
 .App-options {
   display: grid;
   margin: 0;

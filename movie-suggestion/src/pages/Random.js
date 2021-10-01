@@ -1,5 +1,5 @@
 import Header from "../modules/Header"
-import { useState, useEffect, useContext } from "react"
+import { useContext } from "react"
 import { SuggestContext } from "../App"
 
 const imagepath = process.env.REACT_APP_POSTER_PATH
