@@ -4,14 +4,26 @@ import { MovieContext, UserContext } from "../App";
 import Pagination from "../modules/Pagination";
 
 const imagepath = process.env.REACT_APP_POSTER_PATH
+const discoverMovie = process.env.REACT_APP_MOVIE_LIST
 const key = process.env.REACT_APP_API_KEY
 
 const Movies = () => {
+  // Trying to re-create problem
+  const [movieList, setNewMovieList] = useState([]) // this will contain the movies from API
+
   const [currentPage, setCurrentPage] = useState(0) // this will be used for pagination later
   const movies = useContext(MovieContext);
   const user = useContext(UserContext);
   const {movieGenre: genres} = user;
-  const {movieList, setNewMovieList} = movies
+  // const {movieList, setNewMovieList} = movies // commented this for now to re-create problem
+
+  // Added this function to fetch data from API
+  const getMovieList = async() => {
+    const movieListResponse = await fetch(discoverMovie)
+    const jsonMovieList = await movieListResponse.json()
+    console.log(jsonMovieList)
+    setNewMovieList(jsonMovieList) 
+  }
 
   const getGenres = (genreIDs) => {
     let movieGenre = []
@@ -48,6 +60,9 @@ const Movies = () => {
   })
 
   useEffect(() => {
+    // From initial load must load movieList from API
+    getMovieList()
+    
     setCurrentPage(movieList.page)
   }, [])
 
