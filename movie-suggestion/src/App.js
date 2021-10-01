@@ -29,9 +29,9 @@ const UserProvider = (props) => {
 }
 
 const MovieProvider = (props) => {
-  const {children, movieList, tvList} = props
+  const {children, movieList, tvList, setNewMovieList, setNewTVList} = props
   return (
-    <MovieContext.Provider value={{movieList, tvList}}>
+    <MovieContext.Provider value={{movieList, tvList, setNewMovieList, setNewTVList}}>
       {children}
     </MovieContext.Provider>
   )
@@ -56,7 +56,7 @@ const App = props => {
   const [tvGenre, setTVGenre] = useState([])
   const [genres, setGenres] = useState([])
   const [movieList, setMovieList] = useState([])
-  const [tvList, settvList] = useState([])
+  const [tvList, setTVList] = useState([])
   const [isMovie, setIsMovie] = useState([true])
   const [suggestedMovie, setSuggestedMovie] = useState({})
   const [loading, setLoading] = useState(false)
@@ -109,7 +109,15 @@ const App = props => {
   const getTVList = async() => {
     const TVListResponse = await fetch(discoverTV)
     const jsonTVList = await TVListResponse.json()
-    settvList(jsonTVList) 
+    setTVList(jsonTVList) 
+  }
+
+  const setNewMovieList = (newMovieList) => {
+    setMovieList(newMovieList)
+  }
+
+  const setNewTVList = (newTVList) => {
+    setTVList(newTVList)
   }
 
   const makeDiscoverLink = async(type, includedGenres) => {
@@ -159,7 +167,7 @@ const App = props => {
         <div className='App'>
           <Switch>
             <Route path="/" component={Home} exact/>
-            <MovieProvider movieList={movieList} tvList={tvList}>
+            <MovieProvider movieList={movieList} tvList={tvList} setNewMovieList={setNewMovieList} setNewTVList={setNewTVList}>
               <Route path="/movies" component={Movies}/>
               <Route path="/tv-series" component={TVSeries}/>
               <SuggestProvider suggestedMovie={suggestedMovie} loading={loading} genres={genres} isMovie={isMovie}>
