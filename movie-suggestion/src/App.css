@@ -161,8 +161,7 @@ input[type=number] {
 }
 
 .movie {
-  display: grid;
-  grid-template-areas: 'image image movieContent movieContent movieContent';
+  display: flex;
   padding: 6vh;
   padding-left: 5vw;
   padding-right: 5vw;
@@ -175,6 +174,9 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
+  justify-content: start;
+  align-items: initial;
+  min-width: 65vw;
 }
 
 .movieContent > * {
@@ -183,6 +185,7 @@ input[type=number] {
 
 .image {
   height: 50vh;
+  min-width: 20vw;
   margin-right: 5vw;
 }
 
