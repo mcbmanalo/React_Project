@@ -18,9 +18,20 @@ input[type=number] {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .loading-img {
+    animation: App-logo-spin infinite 5s linear;
+    width: 5vw;
+    height: 5vh;
   }
+}
+
+.loading {
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  color: #fff;
 }
 
 .TMDB-logo {
