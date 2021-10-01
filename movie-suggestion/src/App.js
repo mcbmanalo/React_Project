@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { 
-  BrowserRouter as Router,
   Switch,
   Route,
   useHistory
@@ -13,16 +12,17 @@ import Random from './pages/Random';
 
 export const UserContext = React.createContext();
 export const MovieContext = React.createContext();
-// const key = process.env.REACT_APP_API_KEY
+export const SuggestContext = React.createContext();
+const key = process.env.REACT_APP_API_KEY
 const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
 const discoverMovie = process.env.REACT_APP_MOVIE_LIST // try moving the fetching data of movies to movie page later
 const discoverTV = process.env.REACT_APP_TV_LIST // try moving the fetching data of movies to tv series page later
 
 const UserProvider = (props) => {
-  const {children, generateMovieTV, addSelectedGenre, genres} = props
+  const {children, generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption} = props
   return (
-    <UserContext.Provider value={{generateMovieTV, addSelectedGenre, genres}}>
+    <UserContext.Provider value={{generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption}}>
       {children}
     </UserContext.Provider>
   )
@@ -37,35 +37,59 @@ const MovieProvider = (props) => {
   )
 }
 
-const getUniqueList = (list, key) => {
-  return [...new Map(list.map(item => [item[key], item])).values()]
+const SuggestProvider = (props) => {
+  const {children, suggestedMovie, loading, genres, isMovie} = props
+  return (
+    <SuggestContext.Provider value={{suggestedMovie, loading, genres, isMovie}}>
+      {children}
+    </SuggestContext.Provider>
+  )
 }
 
-const testGenre = (list1, list2) => {
-  let newList = [...list1]
-  list2.map((item) => {
-    newList.push(list1.find(list1Item => list1Item.id === item.id))
-  })
-  console.log('Test Log')
-  console.log(newList)
+const uniqueArray = (Genres) => {
+  return [...new Map(Genres.map(item => [item.id, item])).values()]
 }
 
 const App = props => {
   const [selectedGenres, setSelectedGenres] = useState([])
-  const [genres, setListofGenres] = useState([])
+  const [movieGenre, setMovieGenre] = useState([])
+  const [tvGenre, setTVGenre] = useState([])
+  const [genres, setGenres] = useState([])
   const [movieList, setMovieList] = useState([])
   const [tvList, settvList] = useState([])
+  const [isMovie, setIsMovie] = useState([true])
+  const [suggestedMovie, setSuggestedMovie] = useState({})
+  const [loading, setLoading] = useState(false)
   const history = useHistory();
 
   const addSelectedGenres = (genre) => {
     if (selectedGenres.includes(genre)) return
     let chosenGenre = [...selectedGenres]
-    genres.map((genreItem) => {
+    if (isMovie) {
+      movieGenre.map((genreItem) => {
+        if (genreItem.name === genre) return chosenGenre.push(genreItem)
+        return null
+      })
+      console.log(chosenGenre)
+      setSelectedGenres(chosenGenre)
+      return
+    }
+
+    tvGenre.map((genreItem) => {
       if (genreItem.name === genre) return chosenGenre.push(genreItem)
       return null
     })
+
     console.log(chosenGenre)
     setSelectedGenres(chosenGenre)
+  }
+
+  const resetSelectedGenres = (value) => {
+    setSelectedGenres(value)
+  }
+
+  const setMovieOption = (value) => {
+    setIsMovie(value)
   }
 
   const getGenres = async() => {
@@ -73,9 +97,10 @@ const App = props => {
     const tvResponse = await fetch(tvGenreLink)
     const jsonMovie = await movieResponse.json()
     const jsonTV = await tvResponse.json()
-    const listOfGenres = [...jsonMovie.genres, ...jsonTV.genres]
-    testGenre(jsonMovie.genres, jsonTV.genres)
-    setListofGenres(getUniqueList(listOfGenres, 'id'))
+    const allGenres = uniqueArray([...jsonMovie.genres, ...jsonTV.genres])
+    setGenres(allGenres)
+    setMovieGenre(jsonMovie.genres)
+    setTVGenre(jsonTV.genres)
   }
 
   const getMovieList = async() => {
@@ -90,9 +115,34 @@ const App = props => {
     settvList(jsonTVList) 
   }
 
+  const makeDiscoverLink = async(type, includedGenres) => {
+    let linkGenres = includedGenres.join('%2C')
+    let discoverLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=${includedGenres}`
+    console.log(discoverLink)
+    const discoverResponse = await fetch(discoverLink)
+    const discoverJson = await discoverResponse.json()
+    let max = discoverJson.total_pages + 1
+    let min = discoverJson.page
+    let page = (Math.floor(Math.random() * (max - min)) + min)
+    let finalLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page}&with_genres=${includedGenres}`
+    const finalResponse = await fetch(finalLink)
+    const finalJson = await finalResponse.json()
+    let movie = finalJson.results[Math.floor(Math.random() * finalJson.results.length)]
+    console.log(movie)
+    setLoading(false)
+    setSuggestedMovie(movie)
+  }
+
   const generateMovieTV = () => {
-    console.log('Add code for choosing random movie')
-    console.log(history)
+    setLoading(true)
+    if(isMovie) {
+      const genres = selectedGenres.map((genre) => genre.id)
+      makeDiscoverLink('movie', genres)
+      history.push('/suggest')
+      return
+    }
+    const genres = selectedGenres.map((genre) => genre.id)
+    makeDiscoverLink('tv', genres)
     history.push('/suggest')
   }
 
@@ -101,15 +151,25 @@ const App = props => {
     getMovieList()
     getTVList()
   }, [])
+  
   return (
-    <UserProvider generateMovieTV={generateMovieTV} addSelectedGenre={addSelectedGenres} genres={genres}>
+    <UserProvider 
+      generateMovieTV={generateMovieTV} 
+      addSelectedGenre={addSelectedGenres} 
+      movieGenre={movieGenre} 
+      tvGenre={tvGenre} 
+      resetSelectedGenres={resetSelectedGenres}
+      isMovie={isMovie}
+      setMovieOption={setMovieOption}>
         <div className='App'>
           <Switch>
             <Route path="/" component={Home} exact/>
             <MovieProvider movieList={movieList} tvList={tvList}>
               <Route path="/movies" component={Movies}/>
               <Route path="/tv-series" component={TVSeries}/>
-              <Route path="/suggest" component={Random} />
+              <SuggestProvider suggestedMovie={suggestedMovie} loading={loading} genres={genres} isMovie={isMovie}>
+                <Route path="/suggest" component={Random} />
+              </SuggestProvider>
             </MovieProvider>
           </Switch>
           <div className='TMDb'>

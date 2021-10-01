@@ -1,13 +1,17 @@
 import { 
   Link,
 } from 'react-router-dom';
+import { FaPlayCircle } from 'react-icons/fa'
 
 
 const Header = () => {
   return (
     <div className='App-header'>
       <div className='App-image'>
-        <label>Image</label>
+        <div>
+          What to
+        </div>
+        <FaPlayCircle/>
       </div>
 
       <div className='App-pages'>
