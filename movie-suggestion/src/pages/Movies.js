@@ -8,7 +8,7 @@ const Movies = () => {
   const [currentPage, setCurrentPage] = useState(0) // this will be used for pagination later
   const movies = useContext(MovieContext);
   const user = useContext(UserContext);
-  const {genres} = user;
+  const {movieGenre: genres} = user;
   const {movieList} = movies
 
   const getGenres = (genreIDs) => {
@@ -24,7 +24,7 @@ const Movies = () => {
       <div key={movie.id} className='movie'>
         <img className='image' src={imagepath + movie.poster_path}/>
         <div className='movieContent'>
-          <div>{movie.original_title}</div> 
+          <div>{movie.title}</div> 
           <div>{getGenres(movie.genre_ids)}</div>
           <div>Release Date: {movie.release_date}</div>
           <div>{movie.overview}</div>
