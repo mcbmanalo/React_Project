@@ -55,6 +55,9 @@
 
 .App-image {
   color: #ff0000;
+  display: flex;
+  align-items: center;
+  gap: .5vw;
 }
 
 .App-generator {
@@ -81,12 +84,22 @@
   margin-right: 5vw;
   background-color: #181818;
   color: #fff;
-  padding-top: 5vh;
   padding-bottom: 5vh;
 }
 
 .App-genres > * {
   margin-top: 3vh;
+}
+
+.App-options {
+  display: grid;
+  margin: 0;
+  grid-template-areas: 'div div' ;
+  background-color: #373737;
+  min-height: 6vh;  
+  align-items: center;
+  border-top-right-radius: 1vh;
+  border-top-left-radius: 1vh;
 }
 
 .Genres {
