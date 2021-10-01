@@ -1,6 +1,7 @@
 import Header from "../modules/Header";
 import React, {useState, useContext, useEffect} from 'react';
 import { MovieContext, UserContext } from "../App";
+import Pagination from "../modules/Pagination";
 
 const imagepath = process.env.REACT_APP_POSTER_PATH
 
@@ -22,7 +23,7 @@ const Movies = () => {
   const generateMovies = movieList.results.map((movie) => {
     return (
       <div key={movie.id} className='movie'>
-        <img className='image' src={imagepath + movie.poster_path}/>
+        <img className='image' alt={movie.title} src={imagepath + movie.poster_path}/>
         <div className='movieContent'>
           <div>{movie.title}</div> 
           <div>{getGenres(movie.genre_ids)}</div>
@@ -43,6 +44,7 @@ const Movies = () => {
       <div>
         {generateMovies}
       </div>
+      <Pagination/>
     </div>
   )
 }

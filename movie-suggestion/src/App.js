@@ -114,13 +114,13 @@ const App = props => {
 
   const makeDiscoverLink = async(type, includedGenres) => {
     let linkGenres = includedGenres.join('%2C')
-    let discoverLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=${includedGenres}`
+    let discoverLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=${linkGenres}`
     const discoverResponse = await fetch(discoverLink)
     const discoverJson = await discoverResponse.json()
     let max = discoverJson.total_pages + 1
     let min = discoverJson.page
     let page = (Math.floor(Math.random() * (max - min)) + min)
-    let finalLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page}&with_genres=${includedGenres}`
+    let finalLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page}&with_genres=${linkGenres}`
     const finalResponse = await fetch(finalLink)
     const finalJson = await finalResponse.json()
     let movie = finalJson.results[Math.floor(Math.random() * finalJson.results.length)]
@@ -171,7 +171,7 @@ const App = props => {
             <div>
               This product uses the TMDB API but is not endorsed or certified by TMDB
             </div>
-            <img className='TMDB-logo' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'/>
+            <img className='TMDB-logo' alt='TMDB logo' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'/>
           </div>
         </div>
     </UserProvider>

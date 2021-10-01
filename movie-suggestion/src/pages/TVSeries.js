@@ -22,7 +22,7 @@ const TVSeries = () => {
   const generateTVSeries = tvList.results.map((series) => {
     return (
       <div key={series.id} className='movie'>
-        <img className='image' src={imagepath + series.poster_path}/>
+        <img className='image' alt={series.name} src={imagepath + series.poster_path}/>
         <div className='movieContent'>
           <div>{series.name}</div> 
           <div>{getGenres(series.genre_ids)}</div>
