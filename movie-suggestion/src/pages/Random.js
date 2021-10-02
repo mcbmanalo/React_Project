@@ -20,7 +20,6 @@ const Random = () => {
   
   return (
     <div>
-      <Header/>
       {loading ? 
         <Loading/> 
         :
