@@ -1,7 +1,7 @@
 import Header from "../modules/Header"
 import { useContext } from "react"
 import { SuggestContext } from "../App"
-import { FaSpinner } from "react-icons/fa"
+import Loading from "../modules/Loading"
 
 const imagepath = process.env.REACT_APP_POSTER_PATH
 
@@ -22,10 +22,8 @@ const Random = () => {
     <div>
       <Header/>
       {loading ? 
-        <div className='loading'>
-          <FaSpinner className='loading-img'/>
-          Loading
-        </div> :
+        <Loading/> 
+        :
         <div className='movie'>
           <img className='image' src={imagepath + suggestedMovie.poster_path}/>
           <div className='movieContent'>
