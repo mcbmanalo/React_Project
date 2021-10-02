@@ -3,34 +3,36 @@ import { UserContext } from '../App'
 
 const GenreOptions = () => {
   const user = useContext(UserContext);
+  const {isMovie, movieGenre, tvGenre, addSelectedGenre, resetSelectedGenres, setMovieOption} = user
 
-  const generateMovieGenres = user.movieGenre.map((genre) => {
+  const generateMovieGenres = movieGenre.map((genre) => {
     const key = `${genre.name}-${genre.id}`
-    return <div onClick={(event) => user.addSelectedGenre(event.target.textContent)} key={key}>{genre.name}</div>
+    return <div className='genreButton' onClick={(event) => addSelectedGenre(event.target.textContent)} key={key}>{genre.name}</div>
   })
 
-  const generateTVGenres = user.tvGenre.map((genre) => {
+  const generateTVGenres = tvGenre.map((genre) => {
     const key = `${genre.name}-${genre.id}`
-    return <div onClick={(event) => user.addSelectedGenre(event.target.textContent)} key={key}>{genre.name}</div>
+    return <div className='genreButton' onClick={(event) => addSelectedGenre(event.target.textContent)} key={key}>{genre.name}</div>
   })
 
   const setMovieGenre = () => {
-    if (!user.isMovie) user.resetSelectedGenres()
-    user.setMovieOption(true)
+    if (!isMovie) resetSelectedGenres()
+    setMovieOption(true)
   }
 
   const setTVGenre = () => {
-    if (user.isMovie) user.resetSelectedGenres()
-    user.setMovieOption(false)
+    if (isMovie) resetSelectedGenres()
+    setMovieOption(false)
   }
+
 
   return (
     <div className='App-genres'>
       <div className='App-options'>
-        <div className={user.isMovie ? 'selected' : ''} onClick={setMovieGenre}>
+        <div className={isMovie ? 'selected' : 'showType'} onClick={setMovieGenre}>
           Movie Genres
         </div>
-        <div className={user.isMovie ? '' : 'selected'}  onClick={setTVGenre}>
+        <div className={isMovie ? 'showType' : 'selected'}  onClick={setTVGenre}>
           TV Series Genres
         </div>
       </div>
