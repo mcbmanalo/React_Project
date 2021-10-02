@@ -19,9 +19,9 @@ const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
 
 const UserProvider = (props) => {
-  const {children, generateMovieTV, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption} = props
+  const {children, generateMovieTV, isMaxGenre, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption} = props
   return (
-    <UserContext.Provider value={{generateMovieTV, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption}}>
+    <UserContext.Provider value={{generateMovieTV, isMaxGenre, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption}}>
       {children}
     </UserContext.Provider>
   )
@@ -48,11 +48,26 @@ const App = () => {
   const [isMovie, setIsMovie] = useState([true])
   const [suggestedMovie, setSuggestedMovie] = useState({})
   const [loading, setLoading] = useState(false)
+  const [isMaxGenre, setIsMaxGenre] = useState(false)
   const history = useHistory();
 
   const addSelectedGenres = (genre) => {
     const nameOfSelectedGenres = selectedGenres.map(genre => genre.name)
-    if (nameOfSelectedGenres.includes(genre)) return
+
+    if (nameOfSelectedGenres.includes(genre)) {
+      let removeItem = selectedGenres.findIndex(genre => genre.name === genre)
+      let newSelectedGenres = [...selectedGenres]
+      newSelectedGenres.splice(removeItem, 1)
+      setSelectedGenres(newSelectedGenres)
+      setIsMaxGenre(false)
+      return
+    }
+
+    if (selectedGenres.length === 3) {
+      setIsMaxGenre(true)
+      return
+    }
+
     let chosenGenre = [...selectedGenres]
     if (isMovie) {
       movieGenre.map((genreItem) => {
@@ -72,10 +87,13 @@ const App = () => {
 
   const resetSelectedGenres = () => {
     setSelectedGenres([])
+    setIsMovie(true)
+    setIsMaxGenre(false)
   }
 
   const setMovieOption = (value) => {
     setIsMovie(value)
+    setIsMaxGenre(false)
   }
 
   const getGenres = async() => {
@@ -131,6 +149,7 @@ const App = () => {
       tvGenre={tvGenre} 
       resetSelectedGenres={resetSelectedGenres}
       isMovie={isMovie}
+      isMaxGenre={isMaxGenre}
       setMovieOption={setMovieOption}>
         <div className='App'>
           <Header resetSelectedGenres={resetSelectedGenres}/>

@@ -26,6 +26,9 @@ const Generator = () => {
       <div className='quotes' onClick={user.generateMovieTV}>
         Surprise yourself!
         {isSelectedGenreEmpty ? <div></div> : setSelectedGenres()}
+        { user.isMaxGenre ? <div className='error'>Reached max number of allowable genres. (max 3)</div> :
+          <div></div>
+        }
       </div>
     </div>
   )

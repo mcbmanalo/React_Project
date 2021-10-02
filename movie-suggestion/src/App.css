@@ -34,6 +34,12 @@ input[type=number] {
   color: #fff;
 }
 
+.error {
+  color: #ff0000;
+  margin-top: 1vh;
+  font-size: calc(6px + 1vmin);
+}
+
 .selectedGenres {
   margin-top: 1vh;
   font-size: calc(2px + 2vmin);
@@ -124,6 +130,8 @@ input[type=number] {
   flex-direction: column;
   row-gap: 1vh;
   justify-content: center;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 
 .App-genres {
