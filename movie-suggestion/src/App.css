@@ -34,8 +34,17 @@ input[type=number] {
   color: #fff;
 }
 
+.genreButton:active {
+  color: #ff0000;
+}
+
 .selected {
-  color: #ff0000
+  color: #ff0000;
+  font-size: calc(6px + 2vmin);
+}
+
+.showType {
+  font-size: calc(6px + 2vmin);
 }
 
 .TMDB-logo {
