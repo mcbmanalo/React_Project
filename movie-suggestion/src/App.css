@@ -1,67 +1,9 @@
+/* Styling for used in the App.js file */
 .App {
   text-align: center;
   background-color: #212121;
   min-height: 100vh;
   padding-bottom: 10vh;
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .loading-img {
-    animation: App-logo-spin infinite 5s linear;
-    width: 5vw;
-    height: 5vh;
-  }
-}
-
-.loading {
-  display: flex;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  align-items: center;
-  margin-top: 30vh;
-  color: #fff;
-}
-
-.error {
-  color: #ff0000;
-  margin-top: 1vh;
-  font-size: calc(6px + 1vmin);
-}
-
-.selectedGenres {
-  margin-top: 1vh;
-  font-size: calc(2px + 2vmin);
-}
-
-.genreButton:active {
-  color: #ff0000;
-}
-
-.selected {
-  color: #ff0000;
-  font-size: calc(6px + 2vmin);
-}
-
-.showType {
-  font-size: calc(6px + 2vmin);
-}
-
-.TMDB-logo {
-  width: calc(10px + 12vmin);
-  height: calc(10px + 5vmin);
-  margin-left: 1vw;
 }
 
 .TMDb {
@@ -74,6 +16,12 @@ input[type=number] {
   align-items: center;
 }
 
+.TMDB-logo {
+  width: calc(10px + 12vmin);
+  height: calc(10px + 5vmin);
+  margin-left: 1vw;
+}
+
 .App-header {
   background-color: #181818;
   min-height: 10vh;
@@ -84,20 +32,6 @@ input[type=number] {
   font-size: calc(10px + 2vmin);
   padding-left: 5vw;
   padding-right: 5vw;
-}
-
-.pagination {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  justify-content: flex-end;
-  color: #fff;
-  margin-right: 2vw;
-  margin-top: 2vh;
-}
-
-.pagination > input {
-  max-width: 5vw;
 }
 
 .App-pages {
@@ -117,6 +51,38 @@ input[type=number] {
   gap: .5vw;
 }
 
+/* Styling to remove the default look of the input in Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Styling to remove the default look of the input in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Styling for the loading component */
+@media (prefers-reduced-motion: no-preference) {
+  .loading-img {
+    animation: App-logo-spin infinite 5s linear;
+    width: 5vw;
+    height: 5vh;
+  }
+}
+
+.loading {
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  color: #fff;
+}
+
+/* Style for the components used in Home page*/
+
 .App-generator {
   color: #fff;
   background-color: #181818;
@@ -134,6 +100,16 @@ input[type=number] {
   padding-bottom: 2vh;
 }
 
+.quotes {
+  font-size: calc(5px + 2vmin);
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 1vh;
+  font-size: calc(6px + 1vmin);
+}
+
 .App-genres {
   display: flex;
   flex-direction: column;
@@ -148,10 +124,6 @@ input[type=number] {
 
 .App-genres > * {
   margin-top: 3vh;
-}
-
-.quotes {
-  font-size: calc(5px + 2vmin);
 }
 
 .App-options {
@@ -182,6 +154,40 @@ input[type=number] {
   background-color: #373737;
 }
 
+.selectedGenres {
+  margin-top: 1vh;
+  font-size: calc(2px + 2vmin);
+}
+
+.genreButton:active {
+  color: #ff0000;
+}
+
+.selected {
+  color: #ff0000;
+  font-size: calc(6px + 2vmin);
+}
+
+.showType {
+  font-size: calc(6px + 2vmin);
+}
+
+/* Styles used for the Movies and TVSeries pages */
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  margin-right: 2vw;
+  margin-top: 2vh;
+}
+
+.pagination > input {
+  max-width: 5vw;
+}
+
 .movie {
   display: flex;
   padding: 6vh;
@@ -210,7 +216,6 @@ input[type=number] {
   min-width: 20vw;
   margin-right: 5vw;
 }
-
 
 @keyframes App-logo-spin {
   from {

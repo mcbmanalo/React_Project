@@ -25,7 +25,6 @@ const GenreOptions = () => {
     setMovieOption(false)
   }
 
-
   return (
     <div className='App-genres'>
       <div className='App-options'>
