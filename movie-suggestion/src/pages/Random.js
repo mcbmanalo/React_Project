@@ -25,7 +25,7 @@ const Random = () => {
         <Loading/> 
         :
         <div className='movie'>
-          <img className='image' src={imagepath + suggestedMovie.poster_path}/>
+          <img className='image' alt={suggestedMovie.title} src={imagepath + suggestedMovie.poster_path}/>
           <div className='movieContent'>
             <div>{suggestedMovie.title}</div>
             <div>{getGenres(suggestedMovie.genre_ids)}</div>
