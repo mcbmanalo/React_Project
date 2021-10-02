@@ -85,7 +85,6 @@ const Movies = () => {
           <Pagination currentPage={currentPage} setCurrentPage={setPagination} lastPage={lastPage}/>
         </div>
       }
-      
     </div>
   )
 }
