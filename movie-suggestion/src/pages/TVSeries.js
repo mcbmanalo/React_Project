@@ -74,7 +74,6 @@ const TVSeries = () => {
 
   return (
     <div className='App'>
-      <Header />
       {
         loading ? 
         <Loading/> :

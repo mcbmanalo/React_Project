@@ -9,9 +9,11 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import TVSeries from './pages/TVSeries';
 import Random from './pages/Random';
+import Header from './modules/Header';
 
 export const UserContext = React.createContext();
 export const SuggestContext = React.createContext();
+
 const key = process.env.REACT_APP_API_KEY
 const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
@@ -38,7 +40,7 @@ const uniqueArray = (Genres) => {
   return [...new Map(Genres.map(item => [item.id, item])).values()]
 }
 
-const App = props => {
+const App = () => {
   const [selectedGenres, setSelectedGenres] = useState([])
   const [movieGenre, setMovieGenre] = useState([])
   const [tvGenre, setTVGenre] = useState([])
@@ -67,8 +69,8 @@ const App = props => {
     setSelectedGenres(chosenGenre)
   }
 
-  const resetSelectedGenres = (value) => {
-    setSelectedGenres(value)
+  const resetSelectedGenres = () => {
+    setSelectedGenres([])
   }
 
   const setMovieOption = (value) => {
@@ -129,6 +131,7 @@ const App = props => {
       isMovie={isMovie}
       setMovieOption={setMovieOption}>
         <div className='App'>
+          <Header/>
           <Switch>
             <Route path="/" component={Home} exact/>
               <Route path="/movies" component={Movies}/>

@@ -74,7 +74,6 @@ const Movies = () => {
 
   return (
     <div>
-      <Header/>
       {
         loading ? 
         <Loading/> :

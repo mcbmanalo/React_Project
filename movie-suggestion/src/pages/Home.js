@@ -6,7 +6,6 @@ const Home = (props) => {
 
   return(
     <div>
-      <Header/>
       <Generator/>
       <GenreOptions/>
     </div>

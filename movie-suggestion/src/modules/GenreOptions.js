@@ -15,12 +15,12 @@ const GenreOptions = () => {
   })
 
   const setMovieGenre = () => {
-    if (!user.isMovie) user.resetSelectedGenres([])
+    if (!user.isMovie) user.resetSelectedGenres()
     user.setMovieOption(true)
   }
 
   const setTVGenre = () => {
-    if (user.isMovie) user.resetSelectedGenres([])
+    if (user.isMovie) user.resetSelectedGenres()
     user.setMovieOption(false)
   }
 
