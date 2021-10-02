@@ -59,8 +59,8 @@ input[type=number] {
 }
 
 .TMDB-logo {
-  width: 6vw;
-  height: 10vh;
+  width: calc(10px + 12vmin);
+  height: calc(10px + 5vmin);
   margin-left: 1vw;
 }
 
@@ -70,7 +70,7 @@ input[type=number] {
   color: #fff;
   margin-top: 10vh;
   margin-right: 2vw;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -90,7 +90,7 @@ input[type=number] {
   display: flex;
   gap: 5px;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   color: #fff;
   margin-right: 2vw;
   margin-top: 2vh;
@@ -196,7 +196,7 @@ input[type=number] {
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
-  justify-content: start;
+  justify-content: flex-start;
   align-items: initial;
   min-width: 65vw;
 }
