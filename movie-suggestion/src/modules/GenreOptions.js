@@ -27,10 +27,10 @@ const GenreOptions = () => {
   return (
     <div className='App-genres'>
       <div className='App-options'>
-        <div onClick={setMovieGenre}>
+        <div className={user.isMovie ? 'selected' : ''} onClick={setMovieGenre}>
           Movie Genres
         </div>
-        <div onClick={setTVGenre}>
+        <div className={user.isMovie ? '' : 'selected'}  onClick={setTVGenre}>
           TV Series Genres
         </div>
       </div>

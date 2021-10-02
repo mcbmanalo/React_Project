@@ -34,6 +34,10 @@ input[type=number] {
   color: #fff;
 }
 
+.selected {
+  color: #ff0000
+}
+
 .TMDB-logo {
   width: 6vw;
   height: 10vh;
@@ -48,10 +52,6 @@ input[type=number] {
   margin-right: 2vw;
   justify-content: end;
   align-items: center;
-}
-
-.link {
-  text-decoration: none;
 }
 
 .App-header {
