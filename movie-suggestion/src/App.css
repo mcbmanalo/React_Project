@@ -34,6 +34,11 @@ input[type=number] {
   color: #fff;
 }
 
+.selectedGenres {
+  margin-top: 1vh;
+  font-size: calc(2px + 2vmin);
+}
+
 .genreButton:active {
   color: #ff0000;
 }

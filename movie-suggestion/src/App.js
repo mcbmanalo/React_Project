@@ -19,9 +19,9 @@ const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
 
 const UserProvider = (props) => {
-  const {children, generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption} = props
+  const {children, generateMovieTV, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption} = props
   return (
-    <UserContext.Provider value={{generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption}}>
+    <UserContext.Provider value={{generateMovieTV, addSelectedGenre, movieGenre, tvGenre, selectedGenres, resetSelectedGenres, isMovie, setMovieOption}}>
       {children}
     </UserContext.Provider>
   )
@@ -51,7 +51,8 @@ const App = () => {
   const history = useHistory();
 
   const addSelectedGenres = (genre) => {
-    if (selectedGenres.includes(genre)) return
+    const nameOfSelectedGenres = selectedGenres.map(genre => genre.name)
+    if (nameOfSelectedGenres.includes(genre)) return
     let chosenGenre = [...selectedGenres]
     if (isMovie) {
       movieGenre.map((genreItem) => {
@@ -124,7 +125,8 @@ const App = () => {
   return (
     <UserProvider 
       generateMovieTV={generateMovieTV} 
-      addSelectedGenre={addSelectedGenres} 
+      addSelectedGenre={addSelectedGenres}
+      selectedGenres={selectedGenres}
       movieGenre={movieGenre} 
       tvGenre={tvGenre} 
       resetSelectedGenres={resetSelectedGenres}
@@ -134,11 +136,11 @@ const App = () => {
           <Header resetSelectedGenres={resetSelectedGenres}/>
           <Switch>
             <Route path="/" component={Home} exact/>
-              <Route path="/movies" component={Movies}/>
-              <Route path="/tv-series" component={TVSeries}/>
-              <SuggestProvider suggestedMovie={suggestedMovie} loading={loading} genres={genres} isMovie={isMovie}>
-                <Route path="/suggest" component={Random} />
-              </SuggestProvider>
+            <Route path="/movies" component={Movies}/>
+            <Route path="/tv-series" component={TVSeries}/>
+            <SuggestProvider suggestedMovie={suggestedMovie} loading={loading} genres={genres} isMovie={isMovie}>
+              <Route path="/suggest" component={Random} />
+            </SuggestProvider>
           </Switch>
           <div className='TMDb'>
             <div>
