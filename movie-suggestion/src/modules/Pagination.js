@@ -1,16 +1,9 @@
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { useState } from "react";
 
-const key = process.env.REACT_APP_API_KEY
-
 const Pagination = (props) => {
   const {currentPage, setCurrentPage, lastPage} = props
   const [actualCurrentPage, setActualCurrentPage] = useState(currentPage)
-
-  const setNewPage = (newPageNumber) => {
-    if (!(newPageNumber <= lastPage && newPageNumber > 0)) return
-    setCurrentPage(newPageNumber)
-  }
 
   const checkSetActuaCurrentPage = (newPageNumber) => {
     let pageNumber = parseInt(newPageNumber)
@@ -19,7 +12,6 @@ const Pagination = (props) => {
   }
 
   const isEntered = (keyCode) => {
-    console.log(keyCode)
     if(keyCode === 13) {
       setCurrentPage(actualCurrentPage)
     }

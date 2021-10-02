@@ -1,4 +1,3 @@
-import Header from "../modules/Header";
 import React, {useState, useContext, useEffect} from 'react';
 import { UserContext } from "../App";
 import Pagination from "../modules/Pagination";
@@ -11,7 +10,7 @@ const key = process.env.REACT_APP_API_KEY
 const TVSeries = () => {
   const [tvList, setNewTVList] = useState([])
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1) // this will be used for pagination later
+  const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(1)
   const user = useContext(UserContext);
   const {tvGenre:genres} = user;

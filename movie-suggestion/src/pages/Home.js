@@ -1,8 +1,7 @@
-import Header from '../modules/Header';
 import GenreOptions from '../modules/GenreOptions';
 import Generator from '../modules/Generator';
 
-const Home = (props) => {
+const Home = () => {
 
   return(
     <div>

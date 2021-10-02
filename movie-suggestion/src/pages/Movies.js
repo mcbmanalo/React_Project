@@ -1,4 +1,3 @@
-import Header from "../modules/Header";
 import React, {useState, useContext, useEffect} from 'react';
 import { UserContext } from "../App";
 import Pagination from "../modules/Pagination";

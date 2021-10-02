@@ -1,4 +1,3 @@
-import Header from "../modules/Header"
 import { useContext } from "react"
 import { SuggestContext } from "../App"
 import Loading from "../modules/Loading"

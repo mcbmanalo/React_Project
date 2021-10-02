@@ -1,6 +1,5 @@
 import { 
   useHistory,
-  Link,
 } from 'react-router-dom';
 import { FaPlayCircle } from 'react-icons/fa'
 

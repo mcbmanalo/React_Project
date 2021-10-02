@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { UserContext } from '../App'
 
-const Generator = (props) => {
+const Generator = () => {
   const user = useContext(UserContext);
   const [isSelectedGenreEmpty, setIsSelectedGenre] = useState(true)
 
