@@ -11,13 +11,10 @@ import TVSeries from './pages/TVSeries';
 import Random from './pages/Random';
 
 export const UserContext = React.createContext();
-export const MovieContext = React.createContext();
 export const SuggestContext = React.createContext();
 const key = process.env.REACT_APP_API_KEY
 const movieGenreLink = process.env.REACT_APP_MOVIE_GENRE_URI
 const tvGenreLink = process.env.REACT_APP_TV_GENRE_URI
-const discoverMovie = process.env.REACT_APP_MOVIE_LIST // try moving the fetching data of movies to movie page later
-const discoverTV = process.env.REACT_APP_TV_LIST // try moving the fetching data of movies to tv series page later
 
 const UserProvider = (props) => {
   const {children, generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption} = props
@@ -25,15 +22,6 @@ const UserProvider = (props) => {
     <UserContext.Provider value={{generateMovieTV, addSelectedGenre, movieGenre, tvGenre, resetSelectedGenres, isMovie, setMovieOption}}>
       {children}
     </UserContext.Provider>
-  )
-}
-
-const MovieProvider = (props) => {
-  const {children, movieList, tvList, setNewMovieList, setNewTVList} = props
-  return (
-    <MovieContext.Provider value={{movieList, tvList, setNewMovieList, setNewTVList}}>
-      {children}
-    </MovieContext.Provider>
   )
 }
 
@@ -55,8 +43,6 @@ const App = props => {
   const [movieGenre, setMovieGenre] = useState([])
   const [tvGenre, setTVGenre] = useState([])
   const [genres, setGenres] = useState([])
-  const [movieList, setMovieList] = useState([])
-  const [tvList, setTVList] = useState([])
   const [isMovie, setIsMovie] = useState([true])
   const [suggestedMovie, setSuggestedMovie] = useState({})
   const [loading, setLoading] = useState(false)
@@ -100,26 +86,6 @@ const App = props => {
     setTVGenre(jsonTV.genres)
   }
 
-  const getMovieList = async() => {
-    const movieListResponse = await fetch(discoverMovie)
-    const jsonMovieList = await movieListResponse.json()
-    setMovieList(jsonMovieList) 
-  }
-  
-  const getTVList = async() => {
-    const TVListResponse = await fetch(discoverTV)
-    const jsonTVList = await TVListResponse.json()
-    setTVList(jsonTVList) 
-  }
-
-  const setNewMovieList = (newMovieList) => {
-    setMovieList(newMovieList)
-  }
-
-  const setNewTVList = (newTVList) => {
-    setTVList(newTVList)
-  }
-
   const makeDiscoverLink = async(type, includedGenres) => {
     let linkGenres = includedGenres.join('%2C')
     let discoverLink = `https://api.themoviedb.org/3/discover/${type}?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=${linkGenres}`
@@ -151,8 +117,6 @@ const App = props => {
 
   useEffect(() => {
     getGenres()
-    getMovieList()
-    getTVList()
   }, [])
   
   return (
@@ -167,13 +131,11 @@ const App = props => {
         <div className='App'>
           <Switch>
             <Route path="/" component={Home} exact/>
-            <MovieProvider movieList={movieList} tvList={tvList} setNewMovieList={setNewMovieList} setNewTVList={setNewTVList}>
               <Route path="/movies" component={Movies}/>
               <Route path="/tv-series" component={TVSeries}/>
               <SuggestProvider suggestedMovie={suggestedMovie} loading={loading} genres={genres} isMovie={isMovie}>
                 <Route path="/suggest" component={Random} />
               </SuggestProvider>
-            </MovieProvider>
           </Switch>
           <div className='TMDb'>
             <div>
