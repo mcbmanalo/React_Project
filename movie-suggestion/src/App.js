@@ -131,7 +131,7 @@ const App = () => {
       isMovie={isMovie}
       setMovieOption={setMovieOption}>
         <div className='App'>
-          <Header/>
+          <Header resetSelectedGenres={resetSelectedGenres}/>
           <Switch>
             <Route path="/" component={Home} exact/>
               <Route path="/movies" component={Movies}/>

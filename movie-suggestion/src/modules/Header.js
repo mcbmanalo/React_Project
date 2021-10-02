@@ -1,10 +1,32 @@
 import { 
+  useHistory,
   Link,
 } from 'react-router-dom';
 import { FaPlayCircle } from 'react-icons/fa'
 
 
-const Header = () => {
+const Header = (props) => {
+  const {resetSelectedGenres} = props
+  const history = useHistory();
+
+  const goToHome = () => {
+    history.push('/')
+    resetSelectedGenres()
+  }
+
+  
+  const goToMovies = () => {
+    history.push('/movies')
+    resetSelectedGenres()
+  }
+
+  
+  const goToTVSeries = () => {
+    history.push('/tv-series')
+    resetSelectedGenres()
+  }
+
+
   return (
     <div className='App-header'>
       <div className='App-image'>
@@ -15,9 +37,9 @@ const Header = () => {
       </div>
 
       <div className='App-pages'>
-        <Link className='link' to='/'>Home</Link>
-        <Link className='link' to='/movies'>Movies</Link>
-        <Link className='link' to='/tv-series'>TV Series</Link>
+        <div onClick={goToHome}>Home</div>
+        <div onClick={goToMovies}>Movies</div>
+        <div onClick={goToTVSeries}>TV Series</div>
       </div>
 
     </div>
